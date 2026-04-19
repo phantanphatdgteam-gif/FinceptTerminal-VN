@@ -54,7 +54,7 @@ inline bool is_expiry_today() {
 /// Convention: <Month-letter><2-digit-year>  e.g. "F25" for Jan 2025,
 /// "G25" for Feb 2025, etc. (CME/Bloomberg month codes).
 inline QString contract_month_code(int year, int month) {
-    static const QChar kMonthCodes[] = {'F','G','H','J','K','M','N','Q','U','V','X','Z'};
+    static constexpr QChar kMonthCodes[] = {'F','G','H','J','K','M','N','Q','U','V','X','Z'};
     Q_ASSERT(month >= 1 && month <= 12);
     return QString(kMonthCodes[month - 1]) + QString::number(year).right(2);
 }
@@ -69,16 +69,13 @@ inline QString near_month_symbol() {
 inline QList<QDate> upcoming_expiries(int count = 3) {
     QList<QDate> result;
     QDate base = QDate::currentDate();
-    for (int i = 0; i < count; ++i) {
-        QDate m = base.addMonths(i);
+    for (int month_offset = 0; result.size() < count; ++month_offset) {
+        QDate m = base.addMonths(month_offset);
         QDate exp = expiry_date(m.year(), m.month());
         if (exp >= base)
             result.append(exp);
-        else {
-            ++count; // skip past months
-        }
     }
-    return result.mid(0, count);
+    return result;
 }
 
 // ── VN30F contract specification constants ────────────────────────────────────

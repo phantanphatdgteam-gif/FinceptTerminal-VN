@@ -16,8 +16,9 @@ VN30FRiskManager::VN30FRiskManager(const VN30FRiskConfig& config, QObject* paren
 // ── Session management ────────────────────────────────────────────────────────
 
 void VN30FRiskManager::begin_session(double starting_equity_vnd) {
-    kill_switch_active_  = false;
-    session_start_equity_ = starting_equity_vnd;
+    kill_switch_active_        = false;
+    daily_loss_warning_sent_   = false;
+    session_start_equity_      = starting_equity_vnd;
     session_peak_equity_  = starting_equity_vnd;
     realised_pnl_today_   = 0.0;
     unrealised_pnl_       = 0.0;
@@ -28,8 +29,9 @@ void VN30FRiskManager::begin_session(double starting_equity_vnd) {
 void VN30FRiskManager::end_session() {
     LOG_INFO("VN30FRiskManager",
              QString("Session ended. Realised PnL: %1 VND").arg(realised_pnl_today_));
-    realised_pnl_today_ = 0.0;
-    unrealised_pnl_     = 0.0;
+    realised_pnl_today_      = 0.0;
+    unrealised_pnl_          = 0.0;
+    daily_loss_warning_sent_ = false;
 }
 
 bool VN30FRiskManager::is_kill_switch_active() const {
@@ -153,8 +155,9 @@ void VN30FRiskManager::check_and_trigger_kill_switch() {
     const double limit      = -std::abs(config_.max_daily_loss_vnd);
     const double warn_level = limit * 0.8; // 80% of limit
 
-    // Warning
-    if (total_pnl < warn_level) {
+    // Warning (emit only once per session)
+    if (!daily_loss_warning_sent_ && total_pnl < warn_level) {
+        daily_loss_warning_sent_ = true;
         emit daily_loss_warning(total_pnl, config_.max_daily_loss_vnd);
     }
 

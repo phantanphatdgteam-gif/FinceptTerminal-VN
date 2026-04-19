@@ -163,9 +163,12 @@ bool SSIWebSocket::request_access_token() {
 void SSIWebSocket::send_subscribe(const QStringList& symbols) {
     // SSI FastConnect subscription frame:
     // {"action":"sub","params":{"regtopic":"X|<SYMBOL>|<MARKET>"}}
+    // VN30F futures are listed on HNX; equities are on HOSE or UPCOM.
+    // Use HNX for VN30F symbols, HOSE as default for everything else.
     for (const auto& sym : symbols) {
+        const QString market = sym.toUpper().startsWith("VN30F") ? "HNX" : "HOSE";
         QJsonObject params;
-        params["regtopic"] = QString("X|%1|HOSE").arg(sym.toUpper());
+        params["regtopic"] = QString("X|%1|%2").arg(sym.toUpper(), market);
         QJsonObject frame;
         frame["action"] = "sub";
         frame["params"] = params;
@@ -175,8 +178,9 @@ void SSIWebSocket::send_subscribe(const QStringList& symbols) {
 
 void SSIWebSocket::send_unsubscribe(const QStringList& symbols) {
     for (const auto& sym : symbols) {
+        const QString market = sym.toUpper().startsWith("VN30F") ? "HNX" : "HOSE";
         QJsonObject params;
-        params["regtopic"] = QString("X|%1|HOSE").arg(sym.toUpper());
+        params["regtopic"] = QString("X|%1|%2").arg(sym.toUpper(), market);
         QJsonObject frame;
         frame["action"] = "unsub";
         frame["params"] = params;

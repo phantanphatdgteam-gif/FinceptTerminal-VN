@@ -119,6 +119,7 @@ class VN30FRiskManager : public QObject {
 
     VN30FRiskConfig config_;
     bool   kill_switch_active_ = false;
+    bool   daily_loss_warning_sent_ = false;
     double session_start_equity_ = 0.0;
     double session_peak_equity_  = 0.0;
     double realised_pnl_today_   = 0.0;
