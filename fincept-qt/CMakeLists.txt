@@ -538,6 +538,10 @@ set(TRADING_SOURCES
     src/trading/brokers/tradier/TradierBroker.cpp
     src/trading/brokers/saxo/SaxoBankBroker.cpp
 
+    # Vietnam brokers
+    src/trading/brokers/ssi/SSIBroker.cpp
+    src/trading/brokers/VNBrokers.cpp
+
     # Instrument system (Phase 1)
     src/trading/instruments/InstrumentRepository.cpp
     src/trading/instruments/ZerodhaInstrumentParser.cpp
@@ -1297,6 +1301,8 @@ set_source_files_properties(
     src/trading/brokers/ibkr/IBKRBroker.cpp
     src/trading/brokers/tradier/TradierBroker.cpp
     src/trading/brokers/saxo/SaxoBankBroker.cpp
+    src/trading/brokers/ssi/SSIBroker.cpp
+    src/trading/brokers/VNBrokers.cpp
     PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE
 )
 
@@ -1360,6 +1366,8 @@ set_source_files_properties(
     src/trading/brokers/ibkr/IBKRBroker.cpp
     src/trading/brokers/tradier/TradierBroker.cpp
     src/trading/brokers/saxo/SaxoBankBroker.cpp
+    src/trading/brokers/ssi/SSIBroker.cpp
+    src/trading/brokers/VNBrokers.cpp
     src/trading/websocket/ZerodhaWebSocket.cpp
     src/trading/websocket/AngelOneWebSocket.cpp
     PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE

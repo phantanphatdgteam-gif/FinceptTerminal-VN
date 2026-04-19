@@ -23,6 +23,11 @@
 #include "trading/brokers/upstox/UpstoxBroker.h"
 #include "trading/brokers/zerodha/ZerodhaBroker.h"
 
+// Vietnam brokers
+#include "trading/brokers/SSIBroker.h"
+#include "trading/brokers/VNDirectBroker.h"
+#include "trading/brokers/VPSBroker.h"
+
 namespace fincept::trading {
 
 // ============================================================================
@@ -130,6 +135,11 @@ void BrokerRegistry::register_all() {
 
     // EU brokers
     brokers_["saxobank"] = std::make_unique<SaxoBankBroker>();
+
+    // Vietnam brokers
+    brokers_["ssi"] = std::make_unique<SSIBroker>();
+    brokers_["vps"] = std::make_unique<VPSBroker>();
+    brokers_["vndirect"] = std::make_unique<VNDirectBroker>();
 
     LOG_INFO("BrokerRegistry", QString("Registered %1 brokers").arg(brokers_.size()));
 }
