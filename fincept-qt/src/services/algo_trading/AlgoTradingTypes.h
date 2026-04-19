@@ -211,4 +211,21 @@ inline QStringList bank_nifty_symbols() {
             "BANDHANBNK", "FEDERALBNK", "PNB",       "BANKBARODA", "IDFCFIRSTB", "AUBANK"};
 }
 
+// ── VN30F watchlists ──────────────────────────────────────────────────────
+
+inline QStringList vn30f_symbols() {
+    return {"VN30F1M", "VN30F2M"};
+}
+
+inline QStringList vn30_symbols() {
+    return {"VCB", "VHM", "VIC", "HPG", "FPT", "VNM", "MBB", "TCB",
+            "CTG", "BID", "MSN", "VPB", "SSI", "GAS", "SAB", "MWG",
+            "PLX", "VRE", "POW", "REE", "PDR", "KDH", "VJC", "ACB",
+            "BCM", "SHB", "TPB", "HDB", "STB", "BVH"};
+}
+
+inline QStringList vn_index_symbols() {
+    return {"VNINDEX", "VN30", "HNX30", "VN100"};
+}
+
 } // namespace fincept::services::algo
