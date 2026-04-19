@@ -65,6 +65,7 @@
 #include "screens/support/SupportScreen.h"
 #include "screens/surface_analytics/SurfaceAnalyticsScreen.h"
 #include "screens/trade_viz/TradeVizScreen.h"
+#include "screens/vn30f_trading/VN30FTradingScreen.h"
 #include "screens/watchlist/WatchlistScreen.h"
 #include "services/updater/UpdateService.h"
 #include "services/workspace/WorkspaceManager.h"
@@ -838,6 +839,7 @@ void MainWindow::setup_dock_screens() {
     });
     dock_router_->register_factory("excel", []() { return new screens::ExcelScreen; });
     dock_router_->register_factory("trade_viz", []() { return new screens::TradeVizScreen; });
+    dock_router_->register_factory("vn30f_trading", []() { return new screens::VN30FTradingScreen; });
     dock_router_->register_factory("docs", []() { return new screens::DocsScreen; });
 
     // Info/legal pages: static content, safe to construct eagerly.

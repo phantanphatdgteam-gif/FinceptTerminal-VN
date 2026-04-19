@@ -538,6 +538,10 @@ set(TRADING_SOURCES
     src/trading/brokers/tradier/TradierBroker.cpp
     src/trading/brokers/saxo/SaxoBankBroker.cpp
 
+    # Vietnam brokers
+    src/trading/brokers/ssi/SSIBroker.cpp
+    src/trading/brokers/VNBrokers.cpp
+
     # Instrument system (Phase 1)
     src/trading/instruments/InstrumentRepository.cpp
     src/trading/instruments/ZerodhaInstrumentParser.cpp
@@ -597,6 +601,10 @@ set(SERVICE_SOURCES
     src/services/workflow/nodes/FileNodes.cpp
     src/services/workflow/nodes/DataFormatNodes.cpp
     src/services/workflow/nodes/IntegrationNodes.cpp
+    src/services/workflow/nodes/VN30FNodes.cpp
+
+    # VN30F Trading Service
+    src/services/vn30f/VN30FTradingService.cpp
 
     # Workflow infrastructure
     src/services/workflow/ExecutionHooks.cpp
@@ -858,6 +866,9 @@ set(SCREEN_SOURCES
     src/screens/algo_trading/ScannerPanel.cpp
     src/screens/algo_trading/DeploymentDashboard.cpp
 
+    # VN30F Trading
+    src/screens/vn30f_trading/VN30FTradingScreen.cpp
+
     # Data Mapping
     src/screens/data_mapping/DataMappingScreen.cpp
 
@@ -1048,6 +1059,9 @@ set_source_files_properties(
     src/screens/equity_trading/EquityBottomPanel.cpp
     src/screens/equity_trading/AccountManagementDialog.cpp
     src/screens/equity_trading/BroadcastOrderDialog.cpp
+    src/screens/vn30f_trading/VN30FTradingScreen.cpp
+    src/services/vn30f/VN30FTradingService.cpp
+    src/services/workflow/nodes/VN30FNodes.cpp
     src/screens/data_sources/DataSourcesScreen.cpp
     src/screens/data_sources/ConnectorRegistry.cpp
     src/screens/data_sources/connectors/RelationalDatabases.cpp
@@ -1297,6 +1311,8 @@ set_source_files_properties(
     src/trading/brokers/ibkr/IBKRBroker.cpp
     src/trading/brokers/tradier/TradierBroker.cpp
     src/trading/brokers/saxo/SaxoBankBroker.cpp
+    src/trading/brokers/ssi/SSIBroker.cpp
+    src/trading/brokers/VNBrokers.cpp
     PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE
 )
 
@@ -1360,6 +1376,8 @@ set_source_files_properties(
     src/trading/brokers/ibkr/IBKRBroker.cpp
     src/trading/brokers/tradier/TradierBroker.cpp
     src/trading/brokers/saxo/SaxoBankBroker.cpp
+    src/trading/brokers/ssi/SSIBroker.cpp
+    src/trading/brokers/VNBrokers.cpp
     src/trading/websocket/ZerodhaWebSocket.cpp
     src/trading/websocket/AngelOneWebSocket.cpp
     PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE

@@ -394,7 +394,11 @@ enum class BrokerId {
     Alpaca,
     IBKR,
     Tradier,
-    SaxoBank
+    SaxoBank,
+    // Vietnam brokers
+    SSI,     // SSI Securities — VN derivatives broker
+    VPS,     // VPS Securities — VN derivatives broker
+    VNDirect // VNDirect Securities — VN derivatives broker
 };
 
 inline const char* broker_id_str(BrokerId id) {
@@ -431,6 +435,12 @@ inline const char* broker_id_str(BrokerId id) {
             return "tradier";
         case BrokerId::SaxoBank:
             return "saxobank";
+        case BrokerId::SSI:
+            return "ssi";
+        case BrokerId::VPS:
+            return "vps";
+        case BrokerId::VNDirect:
+            return "vndirect";
     }
     return "unknown";
 }
@@ -468,6 +478,12 @@ inline std::optional<BrokerId> parse_broker_id(const QString& s) {
         return BrokerId::Tradier;
     if (s == "saxobank")
         return BrokerId::SaxoBank;
+    if (s == "ssi")
+        return BrokerId::SSI;
+    if (s == "vps")
+        return BrokerId::VPS;
+    if (s == "vndirect")
+        return BrokerId::VNDirect;
     return std::nullopt;
 }
 

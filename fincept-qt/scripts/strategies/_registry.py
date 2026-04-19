@@ -422,4 +422,10 @@ STRATEGY_REGISTRY = {
     "FCT-5F7C7101": {"name": "ScheduledEventsBenchmark", "category": "Benchmark", "path": "benchmarks/ScheduledEventsBenchmark.py"},
     "FCT-FA9F3E6A": {"name": "StatefulCoarseUniverseSelectionBenchmark", "category": "Benchmark", "path": "benchmarks/StatefulCoarseUniverseSelectionBenchmark.py"},
     "FCT-D12D8ED1": {"name": "StatelessCoarseUniverseSelectionBenchmark", "category": "Benchmark", "path": "benchmarks/StatelessCoarseUniverseSelectionBenchmark.py"},
+
+    # VN30F Strategies
+    "FCT-VN30F-DT01": {"name": "VN30FDualThrustAlpha", "category": "VN30F Alpha", "path": "alphas/VN30FDualThrustAlpha.py"},
+    "FCT-VN30F-IBS01": {"name": "VN30FMeanReversionIBSAlpha", "category": "VN30F Alpha", "path": "alphas/VN30FMeanReversionIBSAlpha.py"},
+    "FCT-VN30F-IR01": {"name": "VN30FIntradayReversalAlpha", "category": "VN30F Alpha", "path": "alphas/VN30FIntradayReversalAlpha.py"},
+    "FCT-VN30F-MOM01": {"name": "VN30FFuturesMomentumAlpha", "category": "VN30F Futures", "path": "alphas/VN30FFuturesMomentumAlpha.py"},
 }

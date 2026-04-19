@@ -44,7 +44,13 @@ def convert_exchange(exchange_str: str) -> str:
         'dce': 'DCE',
         'czce': 'CZCE',
         'ine': 'INE',
-        'cffex': 'CFFEX'
+        'cffex': 'CFFEX',
+        # Vietnam exchanges
+        'hose': 'HOSE',
+        'hnx': 'HNX',
+        'upcom': 'UPCOM',
+        'der': 'DER',       # HOSE Derivatives
+        'vn30f': 'DER',     # VN30F maps to DER
     }
     return exchange_map.get(exchange_str.lower(), exchange_str.upper())
 
@@ -114,6 +120,54 @@ def calculate_margin(
 ) -> float:
     return price * volume * contract_size * margin_rate
 
+
+# ============================================================================
+# VN30F-specific helpers
+# ============================================================================
+
+VN30F_MULTIPLIER = 100_000       # 100,000 VND per index point
+VN30F_INITIAL_MARGIN_PCT = 0.13  # ~13% of contract value
+VN30F_FEE_RATE = 0.00027         # 0.027% per side
+VN30F_TICK_SIZE = 0.1            # Minimum price movement
+
+
+def calculate_vn30f_pnl(
+    direction: str,
+    entry_price: float,
+    exit_price: float,
+    lots: int = 1
+) -> Dict:
+    """Calculate P&L for VN30F futures position (in VND)."""
+    return calculate_pnl(direction, entry_price, exit_price, lots, VN30F_MULTIPLIER)
+
+
+def calculate_vn30f_margin(price: float, lots: int = 1) -> float:
+    """Calculate initial margin required for VN30F position (in VND)."""
+    return calculate_margin(price, lots, VN30F_INITIAL_MARGIN_PCT, VN30F_MULTIPLIER)
+
+
+def calculate_vn30f_commission(price: float, lots: int = 1) -> float:
+    """Calculate commission for VN30F trade (in VND)."""
+    return calculate_commission(price, lots, VN30F_FEE_RATE, VN30F_MULTIPLIER)
+
+
+def parse_vn30f_symbol(symbol: str) -> Dict:
+    """Parse VN30F contract symbol (e.g., 'VN30F2506' → year=25, month=06)."""
+    if symbol.startswith('VN30F') and len(symbol) >= 9:
+        return {
+            'symbol': symbol,
+            'underlying': 'VN30',
+            'year': int(symbol[5:7]) + 2000,
+            'month': int(symbol[7:9]),
+            'exchange': 'DER',
+        }
+    # Common aliases
+    if symbol in ('VN30F1M', 'VN30F_1M'):
+        return {'symbol': symbol, 'underlying': 'VN30', 'contract': 'front_month', 'exchange': 'DER'}
+    if symbol in ('VN30F2M', 'VN30F_2M'):
+        return {'symbol': symbol, 'underlying': 'VN30', 'contract': 'back_month', 'exchange': 'DER'}
+    return parse_contract_symbol(symbol)
+
 def main():
     print("Testing VNPy Utility Wrapper")
 
@@ -147,6 +201,18 @@ def main():
     assert result['symbol'] == 'BTCUSDT'
     assert result['exchange'] == 'BINANCE'
     print("Test 5: PASSED")
+
+    print("\n6. Testing VN30F PnL calculation...")
+    result = calculate_vn30f_pnl('LONG', 1200.0, 1210.0, 2)
+    print("Result:", result)
+    assert result['pnl'] == 2_000_000.0  # 10 pts * 100,000 * 2
+    print("Test 6: PASSED")
+
+    print("\n7. Testing VN30F margin calculation...")
+    result = calculate_vn30f_margin(1200.0, 1)
+    print("Result:", result)
+    assert result > 0
+    print("Test 7: PASSED")
 
     print("\nAll tests: PASSED")
 

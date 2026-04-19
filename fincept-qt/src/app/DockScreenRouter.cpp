@@ -54,6 +54,7 @@ QString DockScreenRouter::title_for_id(const QString& id) {
         {"excel", "Excel"},
         {"report_builder", "Report Builder"},
         {"trade_viz", "Trade Viz"},
+        {"vn30f_trading", "VN30F Trading"},
         {"data_sources", "Data Sources"},
         {"data_mapping", "Data Mapping"},
         {"file_manager", "File Manager"},

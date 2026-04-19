@@ -318,6 +318,7 @@ QMenu* ToolBar::build_navigate_menu() {
     // Trading & Portfolio
     auto* trd = add_sub("Trading & Portfolio");
     nav(trd, "Equity Trading", "equity_trading");
+    nav(trd, "VN30F Trading", "vn30f_trading");
     nav(trd, "Alpha Arena", "alpha_arena");
     nav(trd, "Polymarket", "polymarket");
     nav(trd, "Derivatives", "derivatives");
@@ -376,6 +377,7 @@ QMenu* ToolBar::build_view_menu() {
     panels->addAction("Crypto Trading", this, [this]() { emit action_triggered("panel_crypto"); });
     panels->addAction("Equity Trading", this, [this]() { emit action_triggered("panel_equity"); });
     panels->addAction("Algo Trading", this, [this]() { emit action_triggered("panel_algo"); });
+    panels->addAction("VN30F Trading", this, [this]() { emit action_triggered("panel_vn30f"); });
     panels->addSeparator();
     panels->addAction("Equity Research", this, [this]() { emit action_triggered("panel_research"); });
     panels->addAction("Economics", this, [this]() { emit action_triggered("panel_economics"); });
@@ -395,6 +397,7 @@ QMenu* ToolBar::build_view_menu() {
     qs_trading->addAction("Crypto Trading", this, [this]() { emit action_triggered("perspective_trading"); });
     qs_trading->addAction("Equity Trading", this, [this]() { emit action_triggered("perspective_equity"); });
     qs_trading->addAction("Algo Trading", this, [this]() { emit action_triggered("perspective_algo"); });
+    qs_trading->addAction("VN30F Trading", this, [this]() { emit action_triggered("perspective_vn30f"); });
 
     // Research
     auto* qs_research = persp->addMenu("Research");
