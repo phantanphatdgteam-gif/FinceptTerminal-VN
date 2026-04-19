@@ -18,6 +18,8 @@
 #include "trading/brokers/kotak/KotakBroker.h"
 #include "trading/brokers/motilal/MotilalBroker.h"
 #include "trading/brokers/saxo/SaxoBankBroker.h"
+#include "trading/brokers/vndirect/VNDirectBroker.h"
+#include "trading/brokers/ssi/SSIBroker.h"
 #include "trading/brokers/shoonya/ShoonyaBroker.h"
 #include "trading/brokers/tradier/TradierBroker.h"
 #include "trading/brokers/upstox/UpstoxBroker.h"
@@ -130,6 +132,10 @@ void BrokerRegistry::register_all() {
 
     // EU brokers
     brokers_["saxobank"] = std::make_unique<SaxoBankBroker>();
+
+    // Vietnamese brokers
+    brokers_["vndirect"] = std::make_unique<VNDirectBroker>();
+    brokers_["ssi"]      = std::make_unique<SSIBroker>();
 
     LOG_INFO("BrokerRegistry", QString("Registered %1 brokers").arg(brokers_.size()));
 }

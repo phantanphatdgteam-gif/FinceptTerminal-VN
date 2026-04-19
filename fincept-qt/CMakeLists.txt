@@ -368,6 +368,7 @@ list(APPEND NETWORK_SOURCES src/network/websocket/WebSocketClient.cpp)
 set(DATAHUB_SOURCES
     src/datahub/DataHub.cpp
     src/datahub/DataHubMetaTypes.cpp
+    src/datahub/VN30FProducer.cpp
 )
 
 # Auth
@@ -516,6 +517,7 @@ set(TRADING_SOURCES
     # Trading WebSocket
     src/trading/websocket/ZerodhaWebSocket.cpp
     src/trading/websocket/AngelOneWebSocket.cpp
+    src/trading/websocket/SSIWebSocket.cpp
     # Indian brokers
     src/trading/brokers/zerodha/ZerodhaBroker.cpp
     src/trading/brokers/zerodha/Totp.cpp
@@ -537,6 +539,9 @@ set(TRADING_SOURCES
     src/trading/brokers/ibkr/IBKRBroker.cpp
     src/trading/brokers/tradier/TradierBroker.cpp
     src/trading/brokers/saxo/SaxoBankBroker.cpp
+    # Vietnamese brokers
+    src/trading/brokers/vndirect/VNDirectBroker.cpp
+    src/trading/brokers/ssi/SSIBroker.cpp
 
     # Instrument system (Phase 1)
     src/trading/instruments/InstrumentRepository.cpp
@@ -571,6 +576,7 @@ set(SERVICE_SOURCES
     src/services/ai_quant_lab/AIQuantLabService.cpp
     src/services/backtesting/BacktestingService.cpp
     src/services/algo_trading/AlgoTradingService.cpp
+    src/services/vn30f/VN30FRiskManager.cpp
     src/services/portfolio/PortfolioService.cpp
     src/services/portfolio/PortfolioAnalyticsService.cpp
     src/services/quantlib/QuantLibClient.cpp
@@ -1277,6 +1283,7 @@ set_source_files_properties(
     src/screens/polymarket/PolymarketStatusBar.cpp
     src/trading/websocket/ZerodhaWebSocket.cpp
     src/trading/websocket/AngelOneWebSocket.cpp
+    src/trading/websocket/SSIWebSocket.cpp
     # Trading broker files — each defines static now_ts() in same namespace
     src/trading/brokers/zerodha/ZerodhaBroker.cpp
     src/trading/brokers/zerodha/Totp.cpp
@@ -1297,6 +1304,8 @@ set_source_files_properties(
     src/trading/brokers/ibkr/IBKRBroker.cpp
     src/trading/brokers/tradier/TradierBroker.cpp
     src/trading/brokers/saxo/SaxoBankBroker.cpp
+    src/trading/brokers/vndirect/VNDirectBroker.cpp
+    src/trading/brokers/ssi/SSIBroker.cpp
     PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE
 )
 
@@ -1360,8 +1369,11 @@ set_source_files_properties(
     src/trading/brokers/ibkr/IBKRBroker.cpp
     src/trading/brokers/tradier/TradierBroker.cpp
     src/trading/brokers/saxo/SaxoBankBroker.cpp
+    src/trading/brokers/vndirect/VNDirectBroker.cpp
+    src/trading/brokers/ssi/SSIBroker.cpp
     src/trading/websocket/ZerodhaWebSocket.cpp
     src/trading/websocket/AngelOneWebSocket.cpp
+    src/trading/websocket/SSIWebSocket.cpp
     PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE
 )
 
