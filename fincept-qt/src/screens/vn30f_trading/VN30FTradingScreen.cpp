@@ -151,7 +151,7 @@ QWidget* VN30FTradingScreen::build_status_bar() {
     hl->addWidget(price_label_);
     hl->addWidget(pnl_label_);
     hl->addStretch();
-    hl->addWidget(mklbl("TICK:0.1 · MULT:100K · MARGIN:13% · FEE:0.05%"));
+    hl->addWidget(mklbl("TICK:0.1 · MULT:100K · MARGIN:13% · FEE:0.027%"));
 
     return bar;
 }

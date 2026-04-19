@@ -37,7 +37,7 @@ TICK_SIZE = 0.1
 MULTIPLIER = 100_000       # 100,000 VND per point
 INITIAL_MARGIN_PCT = 0.13  # ~13% of contract value
 MAINT_MARGIN_PCT = 0.10    # ~10% of contract value
-FEE_PER_SIDE = 0.0005      # 0.05%
+FEE_PER_SIDE = 0.00027      # 0.027% per side (SSI standard rate)
 PRICE_LIMIT_PCT = 0.07     # ±7%
 
 # VN trading sessions (ICT minutes from midnight)

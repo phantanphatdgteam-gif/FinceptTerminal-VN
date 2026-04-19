@@ -14,7 +14,7 @@ struct VN30FConstants {
     static constexpr double MULTIPLIER = 100000.0; // 100,000 VND per point
     static constexpr double INITIAL_MARGIN_PCT = 0.13;
     static constexpr double MAINT_MARGIN_PCT = 0.10;
-    static constexpr double FEE_PER_SIDE = 0.0005; // 0.05%
+    static constexpr double FEE_PER_SIDE = 0.00027; // 0.027% per side (SSI standard rate)
     static constexpr double PRICE_LIMIT_PCT = 0.07; // ±7%
     static constexpr int MORNING_OPEN_MIN = 525;    // 8:45
     static constexpr int MORNING_CLOSE_MIN = 690;   // 11:30
