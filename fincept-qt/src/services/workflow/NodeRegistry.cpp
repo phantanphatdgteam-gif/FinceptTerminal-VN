@@ -8,6 +8,7 @@
 #include "services/workflow/nodes/DataFormatNodes.h"
 #include "services/workflow/nodes/FileNodes.h"
 #include "services/workflow/nodes/IntegrationNodes.h"
+#include "services/workflow/nodes/VN30FNodes.h"
 #include "services/workflow/nodes/MarketDataNodes.h"
 #include "services/workflow/nodes/NotificationNodes.h"
 #include "services/workflow/nodes/SafetyNodes.h"
@@ -311,6 +312,7 @@ void NodeRegistry::register_builtin_nodes() {
     register_file_nodes(*this);
     register_data_format_nodes(*this);
     register_integration_nodes(*this);
+    register_vn30f_nodes(*this);
 
     // Wire service bridges (connects nullptr executors to real services)
     wire_all_bridges(*this);
